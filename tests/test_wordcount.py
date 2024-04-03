@@ -27,7 +27,13 @@ async def test_wordcount(payload: dict, status_code: int):
     assert response.status_code == status_code
 
 
-def test_search_keyword():
+def test_search_keyword_one_result():
     content = "<html><body><p>fit<p><br /><p>fitting</p><span>fitting</span></body></html>"
     result = search_keyword("fit", content)
     assert 1 == len(result)
+
+
+def test_search_keyword_two_result():
+    content = "<html><body><p>fitting</p><p>fit<p><br /><p>fit</p><span>fits</span></body></html>"
+    result = search_keyword("fit", content)
+    assert 2 == len(result)
