@@ -24,7 +24,11 @@ async def test_wordcount(payload: dict, status_code: int):
     ) as ac:
         response = await ac.post("/wordcount", json=payload)
 
+    json_response = response.json()
+
     assert response.status_code == status_code
+    assert json_response["status"] == "ok"
+    assert json_response["count"] != 0
 
 
 def test_search_keyword_one_result():
