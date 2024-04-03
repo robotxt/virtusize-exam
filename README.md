@@ -11,6 +11,13 @@
 
 ## Development setup:
 
+**Install dependency:**
+
+`poetry install --no-interaction --no-ansi`
+
+**Activate Environment**
+`poetry shell`
+
 **Run localhost:**
 
 `make run` or `uvicorn main:app --reload`
