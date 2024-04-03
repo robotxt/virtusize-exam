@@ -11,15 +11,10 @@
 
 **Run localhost:**
 
-`docker-compose up —build`
+`make run` or `uvicorn main:app --reload`
 
 
 ## Documentation:
 **API Documentation:**
 
-[swagger](http://localhost:8080/schema/swagger/)
-
-**API Authentication Header:**
-
-`Authorization: Token <user_token>`
-
+[swagger/openapi](http://localhost:8000/docs)
