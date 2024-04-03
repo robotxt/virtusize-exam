@@ -1,3 +1,6 @@
+import re
+import requests
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 from fastapi import status
@@ -14,7 +17,7 @@ class WordCountPayload(BaseModel):
 
 
 class WordCountResponse(BaseModel):
-    word: str
+    status: str
     count: int
 
 
@@ -23,10 +26,22 @@ async def root():
     return {"Hello": "World"}
 
 
-@router.post("/wordcount", status_code=WordCountResponse)
+def search_keyword(keyword, content) -> list[str]:
+    results = re.findall(rf"\b{keyword}\b", content, flags=re.IGNORECASE)
+    return results
+
+
+@router.post("/wordcount", status_code=status.HTTP_200_OK, response_model=WordCountResponse)
 async def wordcount(payload: WordCountPayload):
-    logger.info("PAYLOAD: %s", payload)
+    logger.info(f"PAYLOAD: {payload}")
+
+    response = requests.get(payload.url.strip())
+    content = response.content.decode("utf-8")
+
+    results = search_keyword(payload.word, content)
+    logger.info(f"results: {results}")
+
     return WordCountResponse(
-        word="hello",
-        count=5
+        status="ok",
+        count=len(results)
     )
