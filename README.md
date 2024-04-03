@@ -17,4 +17,4 @@
 ## Documentation:
 **API Documentation:**
 
-[swagger/openapi](http://localhost:8000/docs)
+swagger/openapi ([http://localhost:8000/docs](http://localhost:8000/docs))
