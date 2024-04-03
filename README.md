@@ -1,8 +1,10 @@
-# MarketSquirrel
+# Virtusize Exam 
 
 ## Requirements:
 
 **Python:** ^3.10
+
+**Fastapi:** ^0.110.1
 
 **Poetry**: Dependency Management Tool ([https://python-poetry.org/docs/](https://python-poetry.org/docs/))
 
